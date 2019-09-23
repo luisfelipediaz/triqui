@@ -1,15 +1,26 @@
 export class Triqui {
   private game: string[][];
+  private turn = 'X';
 
   constructor() {
     this.game = [['', '', ''], ['', '', ''], ['', '', '']];
   }
 
-  marcar(arg0: number, arg1: number) {
-    this.game[arg0][arg1] = 'X';
+  send(x: number, y: number) {
+    this.game[x][y] = this.turn;
+
+    if (this.turn === 'X') {
+      this.turn = 'O';
+    } else {
+      this.turn = 'X';
+    }
   }
 
   getGame(): string[][] {
     return this.game;
+  }
+
+  getTurn(): string {
+    return this.turn;
   }
 }
