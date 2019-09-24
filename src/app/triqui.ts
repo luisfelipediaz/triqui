@@ -7,6 +7,7 @@ export class Triqui {
   }
 
   send(x: number, y: number) {
+    this.verifyOccupied(x, y);
     this.assignLetter(x, y);
     this.changeTurn();
   }
@@ -16,7 +17,6 @@ export class Triqui {
   }
 
   private assignLetter(x: number, y: number) {
-    this.verifyOccupied(x, y);
     this.game[x][y] = this.turn;
   }
 
