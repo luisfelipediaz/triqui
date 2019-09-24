@@ -38,44 +38,56 @@ describe('Triqui', () => {
     horizontalCase3(new Triqui());
   });
 
+  it('debe "send" retornar "O" cuando el segundo jugador complete el triqui horizontalmente', () => {
+    horizontalCase1(new Triqui('O'), 'O');
+    horizontalCase2(new Triqui('O'), 'O');
+    horizontalCase3(new Triqui('O'), 'O');
+  });
+
   it('debe "send" retornar "O" cuando el segundo jugador complete el triqui verticalmente', () => {
     verticalCase1(new Triqui());
     verticalCase2(new Triqui());
     verticalCase3(new Triqui());
   });
+
+  it('debe "send" retornar "X" cuando el primer jugador complete el triqui verticalmente', () => {
+    verticalCase1(new Triqui('O'), 'X');
+    verticalCase2(new Triqui('O'), 'X');
+    verticalCase3(new Triqui('O'), 'X');
+  });
 });
 
-function horizontalCase1(juego: Triqui) {
+function horizontalCase1(juego: Triqui, player = 'X') {
   juego.send(0, 0);
   juego.send(1, 2);
   juego.send(0, 1);
   juego.send(2, 1);
 
   const actual = juego.send(0, 2);
-  expect(actual).toEqual('X');
+  expect(actual).toEqual(player);
 }
 
-function horizontalCase2(juego: Triqui) {
+function horizontalCase2(juego: Triqui, player = 'X') {
   juego.send(1, 0);
   juego.send(0, 0);
   juego.send(1, 1);
   juego.send(2, 1);
 
   const actual = juego.send(1, 2);
-  expect(actual).toEqual('X');
+  expect(actual).toEqual(player);
 }
 
-function horizontalCase3(juego: Triqui) {
+function horizontalCase3(juego: Triqui, player = 'X') {
   juego.send(2, 0);
   juego.send(0, 0);
   juego.send(2, 1);
   juego.send(0, 1);
 
   const actual = juego.send(2, 2);
-  expect(actual).toEqual('X');
+  expect(actual).toEqual(player);
 }
 
-function verticalCase1(juego: Triqui) {
+function verticalCase1(juego: Triqui, player = 'O') {
   juego.send(0, 1);
   juego.send(0, 0);
   juego.send(0, 2);
@@ -83,11 +95,11 @@ function verticalCase1(juego: Triqui) {
   juego.send(2, 1);
 
   const actual = juego.send(2, 0);
-  expect(actual).toEqual('O');
+  expect(actual).toEqual(player);
 }
 
 
-function verticalCase2(juego: Triqui) {
+function verticalCase2(juego: Triqui, player = 'O') {
   juego.send(0, 0);
   juego.send(0, 1);
   juego.send(0, 2);
@@ -95,17 +107,17 @@ function verticalCase2(juego: Triqui) {
   juego.send(2, 0);
 
   const actual = juego.send(2, 1);
-  expect(actual).toEqual('O');
+  expect(actual).toEqual(player);
 }
 
-function verticalCase3(juego: Triqui) {
+function verticalCase3(juego: Triqui, player = 'O') {
   juego.send(0, 1);
-  juego.send(0, 0);
   juego.send(0, 2);
+  juego.send(0, 0);
   juego.send(1, 2);
   juego.send(2, 0);
 
   const actual = juego.send(2, 2);
-  expect(actual).toEqual('O');
+  expect(actual).toEqual(player);
 }
 

@@ -1,8 +1,7 @@
 export class Triqui {
   private game: string[][];
-  private turn = 'X';
 
-  constructor() {
+  constructor(private turn = 'X') {
     this.game = [['', '', ''], ['', '', ''], ['', '', '']];
   }
 
@@ -15,19 +14,18 @@ export class Triqui {
   }
 
   private whoWon(): string {
-    if (this.game[0][0] === 'X' && this.game[0][1] === 'X' && this.game[0][2] === 'X') {
-      return 'X';
+    // tslint:disable-next-line: prefer-for-of
+    for (let index = 0; index < this.game.length; index++) {
+      if (this.game[index][0] !== '' && this.game[index][0] === this.game[index][1] && this.game[index][1] === this.game[index][2]) {
+        return this.game[index][0];
+      }
     }
 
-    if (this.game[1][0] === 'X' && this.game[1][1] === 'X' && this.game[1][2] === 'X') {
-      return 'X';
+    for (let index = 0; index < this.game.length; index++) {
+      if (this.game[0][index] !== '' && this.game[0][index] === this.game[1][index] && this.game[1][index] === this.game[2][index]) {
+        return this.game[0][index];
+      }
     }
-
-    if (this.game[2][0] === 'X' && this.game[2][1] === 'X' && this.game[2][2] === 'X') {
-      return 'X';
-    }
-
-    return 'O';
   }
 
   private changeTurn() {
