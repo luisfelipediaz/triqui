@@ -23,4 +23,12 @@ describe('Triqui', () => {
     expect(juego.getGame()[1][0]).toEqual('O');
     expect(juego.getTurn()).toEqual('X');
   });
+
+  it('debería "send" arrojar un error cuando trato de enviar un movimiento duplicado', () => {
+    const juego = new Triqui();
+
+    juego.send(1, 2);
+
+    expect(() => juego.send(1, 2)).toThrow(new Error('Celda no disponible'));
+  });
 });
