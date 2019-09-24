@@ -26,6 +26,14 @@ export class Triqui {
         return this.game[0][index];
       }
     }
+
+    if (this.game[0][0] !== '' && this.game[0][0] === this.game[1][1] && this.game[1][1] === this.game[2][2]) {
+      return this.game[0][0];
+    }
+
+    if (this.game[0][2] !== '' && this.game[0][2] === this.game[1][1] && this.game[1][1] === this.game[2][0]) {
+      return this.game[0][2];
+    }
   }
 
   private changeTurn() {

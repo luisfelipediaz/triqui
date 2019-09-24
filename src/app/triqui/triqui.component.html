@@ -1,1 +1,23 @@
-<p>triqui works!</p>
+<div class="father">
+  <div class="player-win" *ngIf="!!playerWin">
+    ¡Player {{playerWin}} win!
+  </div>
+  <div class="content">
+    <div class="row">
+      <div class="column" [ngClass]="game.getGame()[0][0]" (click)="send(0, 0)"></div>
+      <div class="column" [ngClass]="game.getGame()[0][1]" (click)="send(0, 1)"></div>
+      <div class="column" [ngClass]="game.getGame()[0][2]" (click)="send(0, 2)"></div>
+    </div>
+    <div class="row">
+      <div class="column" [ngClass]="game.getGame()[1][0]" (click)="send(1, 0)"></div>
+      <div class="column" [ngClass]="game.getGame()[1][1]" (click)="send(1, 1)"></div>
+      <div class="column" [ngClass]="game.getGame()[1][2]" (click)="send(1, 2)"></div>
+    </div>
+    <div class="row">
+      <div class="column" [ngClass]="game.getGame()[2][0]" (click)="send(2, 0)"></div>
+      <div class="column" [ngClass]="game.getGame()[2][1]" (click)="send(2, 1)"></div>
+      <div class="column" [ngClass]="game.getGame()[2][2]" (click)="send(2, 2)"></div>
+    </div>
+  </div>
+</div>
+<button (click)="reset()">Reset</button>

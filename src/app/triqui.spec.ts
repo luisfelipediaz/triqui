@@ -55,7 +55,35 @@ describe('Triqui', () => {
     verticalCase2(new Triqui('O'), 'X');
     verticalCase3(new Triqui('O'), 'X');
   });
+
+  it('debe "send" retornar "X" cuando el primer jugador complete el triqui digonalmente', () => {
+    diagonalCase1(new Triqui());
+    diagonalCase2(new Triqui());
+  });
+
+  it('debe "send" retornar "O" cuando el segundo jugador complete el triqui digonalmente', () => {
+    diagonalCase1(new Triqui('O'), 'O');
+    diagonalCase2(new Triqui('O'), 'O');
+  });
 });
+
+function diagonalCase1(juego: Triqui, player = 'X') {
+  expect(juego.send(0, 0)).toBeUndefined();
+  expect(juego.send(1, 0)).toBeUndefined();
+  expect(juego.send(1, 1)).toBeUndefined();
+  expect(juego.send(0, 1)).toBeUndefined();
+
+  expect(juego.send(2, 2)).toEqual(player);
+}
+
+function diagonalCase2(juego: Triqui, player = 'X') {
+  juego.send(0, 2);
+  juego.send(1, 0);
+  juego.send(1, 1);
+  juego.send(0, 1);
+  const actual = juego.send(2, 0);
+  expect(actual).toEqual(player);
+}
 
 function horizontalCase1(juego: Triqui, player = 'X') {
   juego.send(0, 0);
