@@ -19,6 +19,14 @@ export class Triqui {
       return 'X';
     }
 
+    if (this.game[1][0] === 'X' && this.game[1][1] === 'X' && this.game[1][2] === 'X') {
+      return 'X';
+    }
+
+    if (this.game[2][0] === 'X' && this.game[2][1] === 'X' && this.game[2][2] === 'X') {
+      return 'X';
+    }
+
     return 'O';
   }
 
@@ -32,7 +40,7 @@ export class Triqui {
 
   private verifyOccupied(x: number, y: number) {
     if (this.isOccupied(x, y)) {
-      throw new Error('Celda no disponible');
+      throw new Error(`Celda no disponible ${x}, ${y}`);
     }
   }
 

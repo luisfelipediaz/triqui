@@ -29,33 +29,83 @@ describe('Triqui', () => {
 
     juego.send(1, 2);
 
-    expect(() => juego.send(1, 2)).toThrow(new Error('Celda no disponible'));
+    expect(() => juego.send(1, 2)).toThrow(new Error('Celda no disponible 1, 2'));
   });
 
   it('debe "send" retornar "X" cuando el primer jugador complete el triqui horizontalmente', () => {
-    const juego = new Triqui();
-
-    juego.send(0, 0);
-    juego.send(1, 2);
-    juego.send(0, 1);
-    juego.send(2, 1);
-
-    const actual = juego.send(0, 2);
-
-    expect(actual).toEqual('X');
+    horizontalCase1(new Triqui());
+    horizontalCase2(new Triqui());
+    horizontalCase3(new Triqui());
   });
 
   it('debe "send" retornar "O" cuando el segundo jugador complete el triqui verticalmente', () => {
-    const juego = new Triqui();
-
-    juego.send(0, 1);
-    juego.send(0, 0);
-    juego.send(0, 2);
-    juego.send(1, 1);
-    juego.send(2, 0);
-
-    const actual = juego.send(2, 2);
-
-    expect(actual).toEqual('O');
+    verticalCase1(new Triqui());
+    verticalCase2(new Triqui());
+    verticalCase3(new Triqui());
   });
 });
+
+function horizontalCase1(juego: Triqui) {
+  juego.send(0, 0);
+  juego.send(1, 2);
+  juego.send(0, 1);
+  juego.send(2, 1);
+
+  const actual = juego.send(0, 2);
+  expect(actual).toEqual('X');
+}
+
+function horizontalCase2(juego: Triqui) {
+  juego.send(1, 0);
+  juego.send(0, 0);
+  juego.send(1, 1);
+  juego.send(2, 1);
+
+  const actual = juego.send(1, 2);
+  expect(actual).toEqual('X');
+}
+
+function horizontalCase3(juego: Triqui) {
+  juego.send(2, 0);
+  juego.send(0, 0);
+  juego.send(2, 1);
+  juego.send(0, 1);
+
+  const actual = juego.send(2, 2);
+  expect(actual).toEqual('X');
+}
+
+function verticalCase1(juego: Triqui) {
+  juego.send(0, 1);
+  juego.send(0, 0);
+  juego.send(0, 2);
+  juego.send(1, 0);
+  juego.send(2, 1);
+
+  const actual = juego.send(2, 0);
+  expect(actual).toEqual('O');
+}
+
+
+function verticalCase2(juego: Triqui) {
+  juego.send(0, 0);
+  juego.send(0, 1);
+  juego.send(0, 2);
+  juego.send(1, 1);
+  juego.send(2, 0);
+
+  const actual = juego.send(2, 1);
+  expect(actual).toEqual('O');
+}
+
+function verticalCase3(juego: Triqui) {
+  juego.send(0, 1);
+  juego.send(0, 0);
+  juego.send(0, 2);
+  juego.send(1, 2);
+  juego.send(2, 0);
+
+  const actual = juego.send(2, 2);
+  expect(actual).toEqual('O');
+}
+
