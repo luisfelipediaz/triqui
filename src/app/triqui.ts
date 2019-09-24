@@ -6,10 +6,20 @@ export class Triqui {
     this.game = [['', '', ''], ['', '', ''], ['', '', '']];
   }
 
-  send(x: number, y: number) {
+  send(x: number, y: number): string {
     this.verifyOccupied(x, y);
     this.assignLetter(x, y);
     this.changeTurn();
+
+    return this.whoWon();
+  }
+
+  private whoWon(): string {
+    if (this.game[0][0] === 'X' && this.game[0][1] === 'X' && this.game[0][2] === 'X') {
+      return 'X';
+    }
+
+    return 'O';
   }
 
   private changeTurn() {
